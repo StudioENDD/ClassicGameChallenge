@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     public LayerMask groundLayer;
-    public Transform groundChecker;
     private Vector2 velocity;
     public float maxJumpHeight = 5f;
     public float maxJumpTime = 1f;
+    
+    [SerializeField] private Transform groundChecker;
 
     public float jumpForce => (2f * maxJumpHeight) / (maxJumpTime / 2f);
     public float gravity => (-2f * maxJumpHeight) / Mathf.Pow((maxJumpTime / 2f), 2);
@@ -28,8 +29,8 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //This checks if the ground is within 0.1 units of the bottom of the player
-        isGrounded = Physics2D.OverlapCircle(groundChecker.transform.position, 0.1f, groundLayer);
-        
+        Vector2 boxHalfExtent = new Vector2(0.25f, 0.05f);
+        isGrounded = Physics2D.OverlapBox(groundChecker.transform.position, boxHalfExtent, 0, groundLayer);
         HorizontalMovement();
         
         if (isGrounded)
@@ -43,9 +44,6 @@ public class PlayerController : MonoBehaviour
     private void HorizontalMovement()
     {
         float moveX = Input.GetAxis("Horizontal");
-        /*Vector2 targetVelocity = new Vector2(moveX * moveSpeed, rb.velocity.y);
-        rb.velocity = Vector2.Lerp(rb.velocity, targetVelocity, accelerationSpeed * Time.deltaTime);
-        */
         velocity.x = Mathf.MoveTowards(velocity.x, moveX * moveSpeed, moveSpeed * Time.deltaTime);
     }
 
@@ -54,7 +52,6 @@ public class PlayerController : MonoBehaviour
         velocity.y = Mathf.Max(velocity.y, 0f);
         if (Input.GetButtonDown("Jump"))
         {
-            //rb.velocity = new Vector2(rb.velocity.x, jumpForce); 
             velocity.y = jumpForce;
         }
     }
@@ -74,4 +71,12 @@ public class PlayerController : MonoBehaviour
 
         rb.MovePosition(position);
     }
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        {
+            //velocity.y = 0f;
+        }
+    }*/
 }
