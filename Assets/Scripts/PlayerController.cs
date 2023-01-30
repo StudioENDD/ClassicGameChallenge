@@ -11,8 +11,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     public LayerMask groundLayer;
     private Vector2 velocity;
-    public float maxJumpHeight = 5f;
-    public float maxJumpTime = 1f;
+    public float maxJumpHeight = 3f;
+    public float maxJumpTime = 2f;
     
     [SerializeField] private Transform groundChecker;
 
@@ -29,8 +29,9 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //This checks if the ground is within 0.1 units of the bottom of the player
-        Vector2 boxHalfExtent = new Vector2(0.25f, 0.05f);
+        Vector2 boxHalfExtent = new Vector2(0.9f, 0.05f);
         isGrounded = Physics2D.OverlapBox(groundChecker.transform.position, boxHalfExtent, 0, groundLayer);
+        //isGrounded = Physics2D.OverlapCircle(groundChecker.transform.position, 0.1f, groundLayer);
         HorizontalMovement();
         
         if (isGrounded)
@@ -39,6 +40,7 @@ public class PlayerController : MonoBehaviour
         }
 
         ApplyGravity();
+        
     }
 
     private void HorizontalMovement()
@@ -61,7 +63,7 @@ public class PlayerController : MonoBehaviour
         bool falling = velocity.y < 0f || !Input.GetButton("Jump");
         float multiplier = falling ? 2f : 1f;
         velocity.y += gravity * multiplier * Time.deltaTime;
-        velocity.y = Mathf.Max(velocity.y, gravity / 2f);
+        velocity.y = Mathf.Max(velocity.y, gravity / 3f);
     }
 
     private void FixedUpdate()
@@ -72,11 +74,12 @@ public class PlayerController : MonoBehaviour
         rb.MovePosition(position);
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
         {
-            //velocity.y = 0f;
+            velocity.y = 0f;
+
         }
-    }*/
+    }
 }
