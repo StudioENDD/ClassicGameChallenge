@@ -18,5 +18,6 @@ public class Goomba : MonoBehaviour
         GetComponent<Collider2D>().enabled = false;
         GetComponent<EntityMovement>().enabled = false;
         Destroy(gameObject, 0.5f);
+        // Sprite Stuff would happen here too
     }
 }
