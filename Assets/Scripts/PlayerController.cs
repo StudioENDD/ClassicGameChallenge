@@ -1,62 +1,72 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed = 8f;
-    //public float accelerationSpeed = 2f;
-    //public float jumpForce = 5f;
+    private Camera cam;
     private Rigidbody2D rb;
-    private bool isGrounded;
-    public LayerMask groundLayer;
+    
     private Vector2 velocity;
+    private float inputAxis;
+
+    public float moveSpeed = 8f;
     public float maxJumpHeight = 5f;
     public float maxJumpTime = 1f;
-    
-    [SerializeField] private Transform groundChecker;
-
-    public float jumpForce => (2f * maxJumpHeight) / (maxJumpTime / 2f);
+    public float jumpPower => (2f * maxJumpHeight) / (maxJumpTime / 2f);
     public float gravity => (-2f * maxJumpHeight) / Mathf.Pow((maxJumpTime / 2f), 2);
 
+    public bool isGrounded;
+    public bool jumping;
+    
 
-    void Awake()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        cam = Camera.main;
     }
 
-    
-    void Update()
+    private void Update()
     {
-        //This checks if the ground is within 0.1 units of the bottom of the player
-        Vector2 boxHalfExtent = new Vector2(0.25f, 0.05f);
-        isGrounded = Physics2D.OverlapBox(groundChecker.transform.position, boxHalfExtent, 0, groundLayer);
-        HorizontalMovement();
-        
-        if (isGrounded)
+        SideMovement();
+        isGrounded = rb.Raycast(Vector2.down);
+        if (isGrounded) 
         {
             GroundMovement();
         }
-
-        ApplyGravity();
+        AddGravity();
     }
 
-    private void HorizontalMovement()
+    private void SideMovement()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        velocity.x = Mathf.MoveTowards(velocity.x, moveX * moveSpeed, moveSpeed * Time.deltaTime);
+        inputAxis = Input.GetAxis("Horizontal");
+        velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
+
+        if (rb.Raycast(Vector2.right * velocity.x)) 
+        {
+            velocity.x = 0f;
+        }
+
+        if (velocity.x > 0)
+        {
+            transform.eulerAngles = Vector3.zero;
+        } 
+        else if (velocity.x < 0f) 
+        {
+            transform.eulerAngles = new Vector3(0f, 180f);
+        }
     }
 
     private void GroundMovement()
     {
         velocity.y = Mathf.Max(velocity.y, 0f);
+        jumping = velocity.y > 0f;
         if (Input.GetButtonDown("Jump"))
         {
-            velocity.y = jumpForce;
+            velocity.y = jumpPower;
+            jumping = true;
         }
     }
 
-    private void ApplyGravity()
+    private void AddGravity()
     {
         bool falling = velocity.y < 0f || !Input.GetButton("Jump");
         float multiplier = falling ? 2f : 1f;
@@ -69,14 +79,35 @@ public class PlayerController : MonoBehaviour
         Vector2 position = rb.position;
         position += velocity * Time.fixedDeltaTime;
 
+        Vector2 leftEdge = cam.ScreenToWorldPoint(Vector2.zero);
+        Vector2 rightEdge = cam.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
+        position.x = Mathf.Clamp(position.x, leftEdge.x + 0.5f, rightEdge.x - 0.5f);
+
+        if (position.x <= leftEdge.x + 0.5f)
+        {
+            velocity.x = 0f;
+        }
+
         rb.MovePosition(position);
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Terrain"))
+        if (col.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            //velocity.y = 0f;
+            if (transform.DotTest(col.transform, Vector2.down))
+            {
+                velocity.y = jumpPower / 2f;
+                jumping = true;
+            }
         }
-    }*/
+        if (col.gameObject.layer != LayerMask.NameToLayer("PowerUp"))
+        {
+            if (transform.DotTest(col.transform, Vector2.up))
+            {
+                velocity.y = 0f;
+                
+            }
+        }
+    }
 }

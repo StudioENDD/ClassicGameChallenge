@@ -45,3 +45,18 @@ TagManager:
   - name: Terrain
     uniqueID: 4240161065
     locked: 0
+  - name: Player
+    uniqueID: 3342374123
+    locked: 0
+  - name: Pipes
+    uniqueID: 1702886867
+    locked: 0
+  - name: Enemies
+    uniqueID: 92398327
+    locked: 0
+  - name: Powerups
+    uniqueID: 53499815
+    locked: 0
+  - name: Background
+    uniqueID: 3560428075
+    locked: 0
