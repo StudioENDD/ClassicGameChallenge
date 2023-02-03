@@ -8,7 +8,12 @@ public class Goomba : MonoBehaviour
         if (col.gameObject.CompareTag("Player"))
         {
             Player player = col.gameObject.GetComponent<Player>();
-            if (col.transform.DotTest(transform, Vector2.down))
+
+            if (player.starPower)
+            {
+                Hit();
+            }
+            else if (col.transform.DotTest(transform, Vector2.down))
             {
                 Flatten();
             }
