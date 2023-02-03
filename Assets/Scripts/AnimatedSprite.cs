@@ -10,7 +10,7 @@ public class AnimatedSprite : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponenet<SpriteRenderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void OnEnable()

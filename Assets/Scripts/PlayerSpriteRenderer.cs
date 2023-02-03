@@ -16,8 +16,20 @@ public class PlayerSpriteRenderer : MonoBehaviour
         movement = GetComponentInParent<PlayerController>();
     }
 
+    private void OnEnable()
+    {
+        spriteRenderer.enabled = true;
+    }
+
+    private void OnDisable()
+    {
+        spriteRenderer.enabled = false;
+        //run.enabled = false;
+    }
+
     private void LateUpdate()
     {
+        // run.enabled = movement.running;
         if (movement.jumping)
         {
             spriteRenderer.sprite = jump;
@@ -30,7 +42,7 @@ public class PlayerSpriteRenderer : MonoBehaviour
         {
             spriteRenderer.sprite = run;
         }
-        else
+        else if (!movement.running)
         {
             spriteRenderer.sprite = idle;
         }

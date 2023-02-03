@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance {get; private set; }
+    public static GameManager Instance { get; private set; }
     public int world {get; private set; }
     public int stage {get; private set; }
     public int lives {get; private set; }
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         this.world = world;
         this.stage = stage;
 
-        SceneManager.LoadScene($"{world}-{stage}");
+        SceneManager.LoadScene("Stage 1");
     }
 
     public void NextLevel()
@@ -73,6 +73,6 @@ public class GameManager : MonoBehaviour
 
     private void LoseGame()
     {
-
+        NewGame();
     }
 }
