@@ -42,12 +42,12 @@ public class GameManager : MonoBehaviour
         coins = 0;
     }
 
-    private void LoadLevel(int world, int stage)
+    public void LoadLevel(int world, int stage)
     {
         this.world = world;
         this.stage = stage;
 
-        SceneManager.LoadScene("Stage 1");
+        SceneManager.LoadScene($"Stage " + stage);
     }
 
     public void NextLevel()
