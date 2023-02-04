@@ -3,6 +3,7 @@ using UnityEngine;
 public class AnimatedSprite : MonoBehaviour
 {
     public Sprite[] sprites;
+    
     public float framerate = 1f/ 6f;
 
     private SpriteRenderer spriteRenderer;
@@ -24,7 +25,7 @@ public class AnimatedSprite : MonoBehaviour
     private void Animate()
     {
         frame ++;
-
+        
         if (frame >= sprites.Length)
         {
             frame = 0;
@@ -34,5 +35,6 @@ public class AnimatedSprite : MonoBehaviour
         {
             spriteRenderer.sprite = sprites[frame];
         }
+
     }
 }

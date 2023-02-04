@@ -8,6 +8,10 @@ public class GameManager : MonoBehaviour
     public int stage {get; private set; }
     public int lives {get; private set; }
     public int coins {get; private set; }
+    public int score {get; private set; }
+    public int timer;
+    public float timeValue;
+    public float countDownRate;
 
     private void Awake()
     {
@@ -20,6 +24,7 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
         }
+        countDownRate = Time.deltaTime;
     }
 
     private void OnDestroy()
@@ -36,10 +41,30 @@ public class GameManager : MonoBehaviour
         NewGame();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+        if (timeValue > 0)
+        {
+            timeValue -= countDownRate;
+        }
+        else if (timeValue <= 0)
+        {
+            timeValue = 0;
+        }
+        timer = (int) (timeValue * 2.5);
+    }
+
     private void NewGame()
     {
         lives = 3;
         coins = 0;
+        score = 0;
+        timer = 400;
+        timeValue = 160;
     }
 
     public void LoadLevel(int world, int stage)
@@ -93,5 +118,10 @@ public class GameManager : MonoBehaviour
     public void AddLife()
     {
         lives++;
+    }
+
+    public void AddScore(int Score)
+    {
+        score += Score;
     }
 }

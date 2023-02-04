@@ -2,11 +2,28 @@ using UnityEngine;
 
 public class Koopa : MonoBehaviour
 {
-    public Sprite shellSprite;
     public float shellSpeed = 12;
 
-    private bool shelled;
+    public bool shelled;
     private bool pushed;
+    public bool faceLeft;
+    private EntityMovement movement;
+
+    private void Awake()
+    {
+        movement = GetComponent<EntityMovement>();
+    }
+    private void Update()
+    {
+        if(movement.direction.x < 0)
+        {
+            faceLeft = true;
+        }
+        else if (movement.direction.x > 0)
+        {
+            faceLeft = false;
+        }
+    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (!shelled && col.gameObject.CompareTag("Player"))
@@ -15,10 +32,12 @@ public class Koopa : MonoBehaviour
 
             if (player.starPower)
             {
+                GameManager.Instance.AddScore(100);
                 Hit();
             }
             else if (col.transform.DotTest(transform, Vector2.down))
             {
+                GameManager.Instance.AddScore(100);
                 EnterShell();
             }
             else
@@ -34,6 +53,7 @@ public class Koopa : MonoBehaviour
         {
             if (!pushed)
             {
+                GameManager.Instance.AddScore(400);
                 Vector2 direction = new Vector2(transform.position.x - other.transform.position.x, 0f);
                 PushShell(direction);
             }
@@ -55,13 +75,16 @@ public class Koopa : MonoBehaviour
         {
             Hit();
         }
+        else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            movement.direction = -movement.direction;
+        }
     }
     private void EnterShell()
     {
         shelled = true;
         GetComponent<EntityMovement>().enabled = false;
-        GetComponent<AnimatedSprite>().enabled = false;
-        GetComponent<SpriteRenderer>().sprite = shellSprite;
+        //GetComponent<KoopaAnimatedSprite>().enabled = false;
     }
 
     private void PushShell(Vector2 direction)
@@ -79,7 +102,7 @@ public class Koopa : MonoBehaviour
 
     private void Hit()
     {
-        GetComponent<AnimatedSprite>().enabled = false;
+        GetComponent<KoopaAnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);
     }

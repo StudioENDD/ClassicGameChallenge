@@ -3,6 +3,12 @@ using UnityEngine;
 public class Goomba : MonoBehaviour
 {
     public Sprite flatSprite;
+    private EntityMovement movement;
+
+    private void Awake()
+    {
+        movement = GetComponent<EntityMovement>();
+    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Player"))
@@ -11,10 +17,12 @@ public class Goomba : MonoBehaviour
 
             if (player.starPower)
             {
+                GameManager.Instance.AddScore(100);
                 Hit();
             }
             else if (col.transform.DotTest(transform, Vector2.down))
             {
+                GameManager.Instance.AddScore(100);
                 Flatten();
             }
             else
@@ -28,7 +36,12 @@ public class Goomba : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Shell"))
         {
+            GameManager.Instance.AddScore(500);
             Hit();
+        }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            movement.direction = -movement.direction;
         }
     }
     private void Flatten()

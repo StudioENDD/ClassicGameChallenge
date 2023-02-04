@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 9192638429543188044}
   - component: {fileID: 9192638429543188045}
   - component: {fileID: 9192638429543188046}
+  - component: {fileID: 2098285783}
   m_Layer: 0
   m_Name: MysteryBlock
   m_TagString: Untagged
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9192638429543188042}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 062bb06b054dcc74892b2b5e3b09ed9b, type: 3}
-  m_Color: {r: 0.8301887, g: 0.6144689, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1d3e8278b7a25524598cf214c5d30e38, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,7 +104,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.024, y: 1.024}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -124,6 +125,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9fd4cc4331c4f04c8b6f35aeb8701aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 3199148110555014090, guid: 153b7ba957989ad449503885b54245f4, type: 3}
+  item: {fileID: 6417435330361343932, guid: 3295f8a46b7ebc34b9cbf27984304ba9, type: 3}
+  fireFlower: {fileID: 0}
   emptyBlock: {fileID: 21300000, guid: dcde8cbfd357fe64ea17875e88595b71, type: 3}
+  emptyBlockActive: 0
   maxHits: 1
+  breakable: 0
+--- !u!114 &2098285783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192638429543188042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473952a508c46e840a7290833a35e6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: aadcc4ea129120c448c27c530f8e008e, type: 3}
+  - {fileID: 21300000, guid: 1d3e8278b7a25524598cf214c5d30e38, type: 3}
+  - {fileID: 21300000, guid: 2494dd79f2b3a854c883923adf4c5e0b, type: 3}
+  - {fileID: 21300000, guid: f3a84541836c95745ae81701facab636, type: 3}
+  framerate: 0.16666667

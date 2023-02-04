@@ -5,6 +5,7 @@ public class Player : MonoBehaviour
 {
     public PlayerSpriteRenderer smallRenderer;
     public PlayerSpriteRenderer bigRenderer;
+    public PlayerSpriteRenderer fireRenderer;
     private PlayerSpriteRenderer activeRenderer;
 
     private DeathAnimation deathAnimation;
@@ -12,15 +13,28 @@ public class Player : MonoBehaviour
 
     public bool big => bigRenderer.enabled;
     public bool small => smallRenderer.enabled;
+    public bool fire => fireRenderer.enabled;
     public bool dead => deathAnimation.enabled;
     public bool starPower { get; private set; }
+
+    public int state;
 
     private void Awake()
     {
         deathAnimation = GetComponent<DeathAnimation>();
         capsuleCollider = GetComponent<CapsuleCollider2D>();
         activeRenderer = smallRenderer;
+        smallRenderer.enabled = true;
     }
+
+    private void Update()
+    {
+        if(GameManager.Instance.timer <= 0)
+        {
+            Death();
+        }
+    }
+
     public void Hit()
     {
         if(!dead && !starPower)
@@ -38,8 +52,9 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
-        smallRenderer.enabled = false;
+        smallRenderer.enabled = true;
         bigRenderer.enabled = false;
+        fireRenderer.enabled = false;
         deathAnimation.enabled = true;
 
         GameManager.Instance.PlayerDeath(3f);

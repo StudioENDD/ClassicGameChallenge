@@ -3,6 +3,7 @@ using UnityEngine;
 public static class Extensions
 {
     private static LayerMask layerMask = LayerMask.GetMask("Default");
+    private static LayerMask layerMask2 = LayerMask.GetMask("Enemy");
     public static bool Raycast(this Rigidbody2D rb, Vector2 direction)
     {
         if (rb.isKinematic) 
@@ -14,6 +15,19 @@ public static class Extensions
         float distance = 0.375f;
 
         RaycastHit2D hit = Physics2D.CircleCast(rb.position, radius, direction.normalized, distance, layerMask);
+        return hit.collider != null && hit.rigidbody != rb;
+    }
+    public static bool Raycast2(this Rigidbody2D rb, Vector2 direction)
+    {
+        if (rb.isKinematic) 
+        {
+            return false;
+        }
+
+        float radius = 0.25f;
+        float distance = 0.375f;
+
+        RaycastHit2D hit = Physics2D.CircleCast(rb.position, radius, direction.normalized, distance, layerMask2);
         return hit.collider != null && hit.rigidbody != rb;
     }
 

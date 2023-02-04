@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public bool jumping { get; private set; }
     public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
+    public bool crouching { get; private set; }
+    public bool faceLeft { get; private set; }
     
 
     private void Awake()
@@ -34,6 +36,8 @@ public class PlayerController : MonoBehaviour
         collider.enabled = true;
         velocity = Vector2.zero;
         jumping = false;
+        crouching = false;
+        faceLeft = false;
     }
 
     private void OnDisable()
@@ -42,17 +46,41 @@ public class PlayerController : MonoBehaviour
         collider.enabled = false;
         velocity = Vector2.zero;
         jumping = false;
+        crouching = false;
     }
 
     private void Update()
     {
         SideMovement();
         isGrounded = rb.Raycast(Vector2.down);
+
+        if(isGrounded && Input.GetKey(KeyCode.S))
+        {   
+            crouching = true;
+        }
+        else if (crouching && Input.GetKey(KeyCode.S))
+        {
+            crouching = true;
+        }
+        else
+        {
+            crouching = false;
+        }
+        
         if (isGrounded) 
         {
             GroundMovement();
         }
         AddGravity();
+
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            moveSpeed = 10f;
+        }
+        else
+        {
+            moveSpeed = 8f;
+        }
     }
 
     private void SideMovement()
@@ -67,11 +95,13 @@ public class PlayerController : MonoBehaviour
 
         if (velocity.x > 0)
         {
-            transform.eulerAngles = Vector3.zero;
+            //transform.eulerAngles = Vector3.zero;
+            faceLeft = false;
         } 
         else if (velocity.x < 0f) 
         {
-            transform.eulerAngles = new Vector3(0f, 180f);
+            //transform.eulerAngles = new Vector3(0f, 180f);
+            faceLeft = true;
         }
     }
 
@@ -84,6 +114,7 @@ public class PlayerController : MonoBehaviour
             velocity.y = jumpPower;
             jumping = true;
         }
+
     }
 
     private void AddGravity()

@@ -4,12 +4,8 @@ using UnityEngine;
 public class DeathAnimation : MonoBehaviour
 {
     public SpriteRenderer spriteRenderer;
-    public Sprite deadSprite;
-
-    private void Reset()
-    {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-    }
+    public bool dead;
+    public bool flipOnDeath;
 
     private void OnEnable()
     {
@@ -17,14 +13,12 @@ public class DeathAnimation : MonoBehaviour
         DisablePhysics();
         StartCoroutine(Animate());
     }
+
     private void UpdateSprite()
     {
         spriteRenderer.enabled = true;
         spriteRenderer.sortingOrder = 10;
-        if (deadSprite != null) 
-        {
-            spriteRenderer.sprite = deadSprite;
-        }
+        dead = true;
     }
     private void DisablePhysics()
     {
@@ -49,6 +43,7 @@ public class DeathAnimation : MonoBehaviour
             entityMovement.enabled = false;
         }
     }
+
     private IEnumerator Animate()
     {
         float elapsed = 0;
@@ -59,6 +54,10 @@ public class DeathAnimation : MonoBehaviour
 
         Vector3 velocity = Vector3.up * jumpVelocity;
 
+        if (flipOnDeath)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 180);
+        }
         while (elapsed < duration)
         {
             transform.position += velocity * Time.deltaTime;

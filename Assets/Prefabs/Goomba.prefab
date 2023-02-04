@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5766963636313840241
 SpriteRenderer:
@@ -79,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4cefeb9c8a15d154b930ce8734b5d41f, type: 3}
-  m_Color: {r: 0.3773585, g: 0.1839549, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 43895d3699853904b887bc70540d136d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0723631fc3100242a0f1d5eedc7b1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flatSprite: {fileID: 21300000, guid: 519dacb2ed7b7a0439409d34b4f6dd88, type: 3}
+  flatSprite: {fileID: 21300000, guid: 7a8984b350ed60f4496976fbf421b6ad, type: 3}
 --- !u!114 &2178287117237402956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +130,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5766963636313840241}
-  deadSprite: {fileID: 0}
+  dead: 0
+  flipOnDeath: 1
 --- !u!114 &5194255986643384002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,9 +145,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 4cefeb9c8a15d154b930ce8734b5d41f, type: 3}
-  - {fileID: 21300000, guid: f440845d6dd7012418c829b6b357b200, type: 3}
-  framerate: 0.25
+  - {fileID: 21300000, guid: 43895d3699853904b887bc70540d136d, type: 3}
+  - {fileID: 21300000, guid: 7922370eab7636f4ca3e3bc04116ee42, type: 3}
+  framerate: 0.1666667
 --- !u!50 &5766963636313840242
 Rigidbody2D:
   serializedVersion: 4

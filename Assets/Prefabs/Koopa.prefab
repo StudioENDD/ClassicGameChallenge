@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 4938109582232282494}
   - component: {fileID: 4938109582232282489}
   - component: {fileID: 1039860996982099054}
-  - component: {fileID: 3039588136193934627}
   - component: {fileID: 4938109582232282488}
   - component: {fileID: 2382582770320687148}
   - component: {fileID: 4938109582232282490}
   - component: {fileID: 4938109582232282469}
   - component: {fileID: 3619367013632013920}
+  - component: {fileID: 5773065110131863270}
   m_Layer: 8
   m_Name: Koopa
   m_TagString: Untagged
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d4cb64184a9249741ad9e035afc01368, type: 3}
-  m_Color: {r: 0.11325155, g: 0.6698113, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -103,24 +103,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77173a1ee1fe91948bca61b225d0b5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shellSprite: {fileID: 21300000, guid: 01223091e42cb824bbfda3471e58df4f, type: 3}
   shellSpeed: 12
---- !u!114 &3039588136193934627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4938109582232282468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473952a508c46e840a7290833a35e6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sprites:
-  - {fileID: 21300000, guid: d4cb64184a9249741ad9e035afc01368, type: 3}
-  - {fileID: 21300000, guid: 355d54bb4da2b5c47aaa637eeca76d85, type: 3}
-  framerate: 0.25
+  shelled: 0
+  faceLeft: 0
 --- !u!114 &4938109582232282488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,7 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 4938109582232282489}
-  deadSprite: {fileID: 0}
+  dead: 0
+  flipOnDeath: 1
 --- !u!50 &4938109582232282490
 Rigidbody2D:
   serializedVersion: 4
@@ -212,3 +198,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1, y: 1.1}
   m_EdgeRadius: 0
+--- !u!114 &5773065110131863270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4938109582232282468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6deb88a29d971e042abd10aa81c7eede, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftSprites:
+  - {fileID: 21300000, guid: d4cb64184a9249741ad9e035afc01368, type: 3}
+  rightSprites:
+  - {fileID: 21300000, guid: 839b60c43c3384a4387b2ebf2aac7c1e, type: 3}
+  - {fileID: 21300000, guid: eb66e4a3bdc310748be6e55eec60f884, type: 3}
+  shellSprites:
+  - {fileID: 21300000, guid: 01223091e42cb824bbfda3471e58df4f, type: 3}
+  framerate: 0.16666667

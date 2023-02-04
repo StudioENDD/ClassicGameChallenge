@@ -10,6 +10,7 @@ public class FlagPole : MonoBehaviour
     public float speed = 6f;
     public int nextWorld = 1;
     public int nextStage = 1;
+    public int remainingTime;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -22,6 +23,7 @@ public class FlagPole : MonoBehaviour
 
     private IEnumerator LevelCompleteSequence(Transform player)
     {
+        GameManager.Instance.countDownRate = 0f;
         player.GetComponent<PlayerController>().enabled = false;
 
         yield return MoveTo(player, poleBottom.position);
@@ -30,6 +32,13 @@ public class FlagPole : MonoBehaviour
         yield return MoveTo(player, castle.position);
 
         player.gameObject.SetActive(false);
+
+        while (GameManager.Instance.timer > 0)
+        {
+            GameManager.Instance.timeValue -= 0.4f;
+            GameManager.Instance.AddScore(50);
+            yield return new WaitForSeconds(0.01f);
+        }
 
         yield return new WaitForSeconds(2f);
 
