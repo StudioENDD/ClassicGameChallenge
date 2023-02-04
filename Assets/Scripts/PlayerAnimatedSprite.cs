@@ -12,8 +12,8 @@ public class PlayerAnimatedSprite : MonoBehaviour
     public Sprite[] slideSpritesR;
     public Sprite[] runSpritesL;
     public Sprite[] runSpritesR;
-    public Sprite[] shootSpritesL;
-    public Sprite[] shootSpritesR;
+    public Sprite[] throwSpritesL;
+    public Sprite[] throwSpritesR;
     public Sprite[] deathSprite;
     public float framerate = 1f/ 6f;
 
@@ -67,16 +67,16 @@ public class PlayerAnimatedSprite : MonoBehaviour
                     spriteRenderer.sprite = crouchSpritesR[frame];
                 }
             }
-            else if (shootSpritesR.Length != 0 && movement.crouching)
+            else if (throwSpritesR.Length != 0 && movement.throwing)
             {
-                if (frame >= shootSpritesR.Length)
+                if (frame >= throwSpritesR.Length)
                 {
                     frame = 0;
                 }
 
-                if (frame >= 0 && frame < shootSpritesR.Length)
+                if (frame >= 0 && frame < throwSpritesR.Length)
                 {
-                    spriteRenderer.sprite = shootSpritesR[frame];
+                    spriteRenderer.sprite = throwSpritesR[frame];
                 }
             }
             else if (movement.jumping)
@@ -142,16 +142,16 @@ public class PlayerAnimatedSprite : MonoBehaviour
                     spriteRenderer.sprite = crouchSpritesL[frame];
                 }
             }
-            else if (shootSpritesL.Length != 0 && movement.crouching)
+            else if (throwSpritesL.Length != 0 && movement.throwing)
             {
-                if (frame >= shootSpritesL.Length)
+                if (frame >= throwSpritesL.Length)
                 {
                     frame = 0;
                 }
 
-                if (frame >= 0 && frame < shootSpritesL.Length)
+                if (frame >= 0 && frame < throwSpritesL.Length)
                 {
-                    spriteRenderer.sprite = shootSpritesL[frame];
+                    spriteRenderer.sprite = throwSpritesL[frame];
                 }
             }
             else if (movement.jumping)

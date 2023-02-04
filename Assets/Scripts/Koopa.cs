@@ -73,6 +73,12 @@ public class Koopa : MonoBehaviour
         }
         else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Shell"))
         {
+            GameManager.Instance.AddScore(500);
+            Hit();
+        }
+        else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        {
+            GameManager.Instance.AddScore(200);
             Hit();
         }
         else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))

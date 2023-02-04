@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c680ef43f320f7445b9069f290b06fef, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e25f1d76c72dbc4b97733ca8023e8c8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -153,6 +153,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: ee0c9afe867caf1419d46a4c3f9b84eb, type: 3}
   - {fileID: 21300000, guid: 48c910f9fd8a91a4d9e2495290fa7c06, type: 3}
   - {fileID: 21300000, guid: 760bff0c6ef4ffc489bbf37511b81bbd, type: 3}
+  throwSpritesL:
+  - {fileID: 21300000, guid: 577c2e6a42734b84da3fca4018b0ae70, type: 3}
+  throwSpritesR:
+  - {fileID: 21300000, guid: 7e25f1d76c72dbc4b97733ca8023e8c8, type: 3}
   deathSprite:
   - {fileID: 21300000, guid: c0c0f5d8e88585c41be4d7975ab82681, type: 3}
   - {fileID: 21300000, guid: 10b0421b44488b041a62021e818fbac5, type: 3}
@@ -194,6 +198,7 @@ Transform:
   - {fileID: 4022294217375335566}
   - {fileID: 6122732367515578067}
   - {fileID: 7789415156402337025}
+  - {fileID: 5283676082007657491}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -209,6 +214,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7873d94a0ec7e6f48a9d713ca2ec08d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireballPrefab: {fileID: 4681754495648543543, guid: a1632b7b667a33449a3e2320d84836e6, type: 3}
+  fireballSpawnPos: {fileID: 5283676082007657491}
+  maxFireballs: 2
+  fireballCount: 0
   moveSpeed: 8
   maxJumpHeight: 5
   maxJumpTime: 1
@@ -226,6 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2468951016396194291}
   dead: 0
+  flipOnDeath: 0
 --- !u!114 &2527461036084170440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +435,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c95510f76c0f8a74e83f18ba431bed35, type: 3}
   - {fileID: 21300000, guid: ab46888e61b6cb44ab93e2ad72e71edc, type: 3}
   - {fileID: 21300000, guid: 559e5aa6772c11148b18b45844148d0c, type: 3}
+  throwSpritesL: []
+  throwSpritesR: []
   deathSprite:
   - {fileID: 21300000, guid: c0c0f5d8e88585c41be4d7975ab82681, type: 3}
   - {fileID: 21300000, guid: 10b0421b44488b041a62021e818fbac5, type: 3}
@@ -583,8 +595,41 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e32c7b65d91cf924e8f76b539e24d232, type: 3}
   - {fileID: 21300000, guid: a4635b66ff5ced842877d4c1f9d1e8ec, type: 3}
   - {fileID: 21300000, guid: f33c2f478f0ec3145869e1d5f2bc3a54, type: 3}
+  throwSpritesL: []
+  throwSpritesR: []
   deathSprite:
   - {fileID: 21300000, guid: c0c0f5d8e88585c41be4d7975ab82681, type: 3}
   - {fileID: 21300000, guid: 10b0421b44488b041a62021e818fbac5, type: 3}
   - {fileID: 21300000, guid: 57723b6a670fdba43bdab5735d34fc0e, type: 3}
   framerate: 0.16666667
+--- !u!1 &8301127169143547771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5283676082007657491}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5283676082007657491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8301127169143547771}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.75, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5280360792748233329}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

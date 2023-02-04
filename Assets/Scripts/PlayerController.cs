@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -5,9 +6,14 @@ public class PlayerController : MonoBehaviour
     private Camera cam;
     private Rigidbody2D rb;
     private new Collider2D collider;
+    public GameObject fireballPrefab;
+    public Transform fireballSpawnPos;
+    public int maxFireballs = 2;
+    public int fireballCount = 0;
     
     private Vector2 velocity;
     private float inputAxis;
+    
 
     public float moveSpeed = 8f;
     public float maxJumpHeight = 5f;
@@ -20,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public bool running => Mathf.Abs(velocity.x) > 0.25f || Mathf.Abs(inputAxis) > 0.25f;
     public bool sliding => (inputAxis > 0f && velocity.x < 0f) || (inputAxis < 0f && velocity.x > 0f);
     public bool crouching { get; private set; }
+    public bool throwing { get; private set; }
     public bool faceLeft { get; private set; }
     
 
@@ -28,6 +35,8 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         cam = Camera.main;
+        maxFireballs = 2;
+        fireballCount = 0;
     }
 
     private void OnEnable()
@@ -38,6 +47,7 @@ public class PlayerController : MonoBehaviour
         jumping = false;
         crouching = false;
         faceLeft = false;
+        throwing = false;
     }
 
     private void OnDisable()
@@ -47,12 +57,14 @@ public class PlayerController : MonoBehaviour
         velocity = Vector2.zero;
         jumping = false;
         crouching = false;
+        throwing = false;
     }
 
     private void Update()
     {
         SideMovement();
         isGrounded = rb.Raycast(Vector2.down);
+        GameManager.Instance.playerFaceLeft = faceLeft;
 
         if(isGrounded && Input.GetKey(KeyCode.S))
         {   
@@ -78,6 +90,15 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftShift))
         {
             moveSpeed = 10f;
+
+            if (Input.GetKeyDown(KeyCode.LeftShift) && fireballCount < maxFireballs && GameManager.Instance.currentState == 2)
+            {
+                StartCoroutine(ThrowFire());
+            }
+            else
+            {
+                throwing = false;
+            }
         }
         else
         {
@@ -162,5 +183,16 @@ public class PlayerController : MonoBehaviour
                 
             }
         }
+    }
+
+    public IEnumerator ThrowFire()
+    {
+        throwing = true;
+        fireballCount ++;
+        Instantiate(fireballPrefab, fireballSpawnPos.position, Quaternion.identity);
+        
+        yield return new WaitForSeconds(0.25f);
+        throwing = false;
+        yield return null;
     }
 }

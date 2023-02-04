@@ -8,6 +8,7 @@ public class EntityMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 velocity;
     public bool dontMove = false;
+    //public bool jumper = false;
 
     private void Awake()
     {

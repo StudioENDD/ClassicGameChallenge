@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float timeValue;
     public float countDownRate;
     public int currentState;
+    public bool playerFaceLeft;
 
     private void Awake()
     {
@@ -58,8 +59,7 @@ public class GameManager : MonoBehaviour
             timeValue = 0;
         }
         timer = (int) (timeValue * 2.5);
-
-        
+      
     }
 
     private void NewGame()

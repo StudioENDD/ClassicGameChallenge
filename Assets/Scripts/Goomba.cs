@@ -39,6 +39,11 @@ public class Goomba : MonoBehaviour
             GameManager.Instance.AddScore(500);
             Hit();
         }
+        else if (other.gameObject.layer == LayerMask.NameToLayer("Projectile"))
+        {
+            GameManager.Instance.AddScore(100);
+            Hit();
+        }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             movement.direction = -movement.direction;
