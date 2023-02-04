@@ -7,6 +7,7 @@ public class EntityMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Vector2 velocity;
+    public bool dontMove = false;
 
     private void Awake()
     {
@@ -37,19 +38,35 @@ public class EntityMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        velocity.x = direction.x * speed;
-        velocity.y += Physics2D.gravity.y * Time.fixedDeltaTime;
-
-        rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
-
-        if (rb.Raycast(direction))
+        if (GameManager.Instance.currentState > 0 && gameObject.GetComponent<AnimatedPowerUp>())
         {
-            direction = -direction;
+            dontMove = true;
+        }
+        else
+        {
+            dontMove = false;
         }
 
-        if (rb.Raycast(Vector2.down)) 
+        if(!dontMove)
         {
-            velocity.y = Mathf.Max(velocity.y, 0f);
+            velocity.x = direction.x * speed;
+            velocity.y += Physics2D.gravity.y * Time.fixedDeltaTime;
+
+            rb.MovePosition(rb.position + velocity * Time.fixedDeltaTime);
+
+            if (rb.Raycast(direction))
+            {
+                direction = -direction;
+            }
+
+            if (rb.Raycast(Vector2.down)) 
+            {
+                velocity.y = Mathf.Max(velocity.y, 0f);
+            }
+        }
+        else if (dontMove && gameObject.GetComponent<AnimatedPowerUp>())
+        {
+            rb.velocity = Vector2.zero;
         }
     }
 }

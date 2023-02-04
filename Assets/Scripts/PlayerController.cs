@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
         cam = Camera.main;
     }
 
-    private void OnEnble()
+    private void OnEnable()
     {
         rb.isKinematic = false;
         collider.enabled = true;
@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
             GroundMovement();
         }
         AddGravity();
+
+        jumping = !isGrounded;
 
         if(Input.GetKey(KeyCode.LeftShift))
         {
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
         bool falling = velocity.y < 0f || !Input.GetButton("Jump");
         float multiplier = falling ? 2f : 1f;
         velocity.y += gravity * multiplier * Time.deltaTime;
-        velocity.y = Mathf.Max(velocity.y, gravity / 2f);
+        velocity.y = Mathf.Max(velocity.y, gravity / 4f);
     }
 
     private void FixedUpdate()

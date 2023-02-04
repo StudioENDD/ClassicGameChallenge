@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public int timer;
     public float timeValue;
     public float countDownRate;
+    public int currentState;
 
     private void Awake()
     {
@@ -47,6 +48,7 @@ public class GameManager : MonoBehaviour
         {
             Application.Quit();
         }
+
         if (timeValue > 0)
         {
             timeValue -= countDownRate;
@@ -56,6 +58,8 @@ public class GameManager : MonoBehaviour
             timeValue = 0;
         }
         timer = (int) (timeValue * 2.5);
+
+        
     }
 
     private void NewGame()

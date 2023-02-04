@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public bool dead => deathAnimation.enabled;
     public bool starPower { get; private set; }
 
-    public int state;
+    private int state;
 
     private void Awake()
     {
@@ -33,6 +33,20 @@ public class Player : MonoBehaviour
         {
             Death();
         }
+        
+        if (small)
+        {
+            state = 0;
+        }
+        else if (big)
+        {
+            state = 1;
+        }
+        else if (fire)
+        {
+            state = 2;
+        }
+        GameManager.Instance.currentState = state;
     }
 
     public void Hit()
@@ -62,20 +76,37 @@ public class Player : MonoBehaviour
 
     public void Grow()
     {
-        smallRenderer.enabled = false;
-        bigRenderer.enabled = true;
-        activeRenderer = bigRenderer;
+        if(state == 0)
+        {
+            smallRenderer.enabled = false;
+            bigRenderer.enabled = true;
+            fireRenderer.enabled = false;
+            activeRenderer = bigRenderer;
 
-        capsuleCollider.size = new Vector2(1f, 2f);
-        capsuleCollider.offset = new Vector2(0f, 0.5f);
+            capsuleCollider.size = new Vector2(1f, 2f);
+            capsuleCollider.offset = new Vector2(0f, 0.5f);
 
-        StartCoroutine(ScaleAnimation());
+            StartCoroutine(ScaleAnimation());
+        }
+        else if(state == 1)
+        {
+            smallRenderer.enabled = false;
+            bigRenderer.enabled = false;
+            fireRenderer.enabled = true;
+            activeRenderer = fireRenderer;
+
+            capsuleCollider.size = new Vector2(1f, 2f);
+            capsuleCollider.offset = new Vector2(0f, 0.5f);
+
+            //StartCoroutine(ScaleAnimation());
+        }
     }
 
     private void Shrink()
     {
         smallRenderer.enabled = true;
         bigRenderer.enabled = false;
+        fireRenderer.enabled = false;
         activeRenderer = smallRenderer;
 
         capsuleCollider.size = new Vector2(1f, 1f);

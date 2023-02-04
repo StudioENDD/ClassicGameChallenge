@@ -12,6 +12,8 @@ public class PlayerAnimatedSprite : MonoBehaviour
     public Sprite[] slideSpritesR;
     public Sprite[] runSpritesL;
     public Sprite[] runSpritesR;
+    public Sprite[] shootSpritesL;
+    public Sprite[] shootSpritesR;
     public Sprite[] deathSprite;
     public float framerate = 1f/ 6f;
 
@@ -63,6 +65,18 @@ public class PlayerAnimatedSprite : MonoBehaviour
                 if (frame >= 0 && frame < crouchSpritesR.Length)
                 {
                     spriteRenderer.sprite = crouchSpritesR[frame];
+                }
+            }
+            else if (shootSpritesR.Length != 0 && movement.crouching)
+            {
+                if (frame >= shootSpritesR.Length)
+                {
+                    frame = 0;
+                }
+
+                if (frame >= 0 && frame < shootSpritesR.Length)
+                {
+                    spriteRenderer.sprite = shootSpritesR[frame];
                 }
             }
             else if (movement.jumping)
@@ -126,6 +140,18 @@ public class PlayerAnimatedSprite : MonoBehaviour
                 if (frame >= 0 && frame < crouchSpritesL.Length)
                 {
                     spriteRenderer.sprite = crouchSpritesL[frame];
+                }
+            }
+            else if (shootSpritesL.Length != 0 && movement.crouching)
+            {
+                if (frame >= shootSpritesL.Length)
+                {
+                    frame = 0;
+                }
+
+                if (frame >= 0 && frame < shootSpritesL.Length)
+                {
+                    spriteRenderer.sprite = shootSpritesL[frame];
                 }
             }
             else if (movement.jumping)

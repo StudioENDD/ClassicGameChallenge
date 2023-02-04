@@ -4,7 +4,6 @@ using UnityEngine;
 public class BlockHit : MonoBehaviour
 {
     public GameObject item;
-    public GameObject fireFlower;
     public Sprite emptyBlock;
     public bool emptyBlockActive;
     public int maxHits = -1;
