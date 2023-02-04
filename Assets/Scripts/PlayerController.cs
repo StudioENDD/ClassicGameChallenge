@@ -23,6 +23,27 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+<<<<<<< Updated upstream
+=======
+        collider = GetComponent<Collider2D>();
+        cam = Camera.main;
+    }
+
+    private void OnEnable()
+    {
+        rb.isKinematic = false;
+        collider.enabled = true;
+        velocity = Vector2.zero;
+        jumping = false;
+    }
+
+    private void OnDisable()
+    {
+        rb.isKinematic = true;
+        collider.enabled = false;
+        velocity = Vector2.zero;
+        jumping = false;
+>>>>>>> Stashed changes
     }
 
     
