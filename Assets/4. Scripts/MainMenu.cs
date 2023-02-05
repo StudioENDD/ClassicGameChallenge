@@ -23,6 +23,12 @@ public class MainMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+    
+    public void Win()
+    {
+        SceneManager.LoadScene("Win Screen");
+    }
+    
     public void QuitGame()
     {
         Debug.Log("quit");
