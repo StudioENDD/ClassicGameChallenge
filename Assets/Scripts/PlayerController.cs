@@ -7,9 +7,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private new Collider2D collider;
     public GameObject fireballPrefab;
-    public Transform fireballSpawnPos;
+    public Transform fireballSpawnPosR;
+    public Transform fireballSpawnPosL;
     public int maxFireballs = 2;
-    public int fireballCount = 0;
+    public int currentFireballs = 0;
     
     private Vector2 velocity;
     private float inputAxis;
@@ -35,8 +36,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         collider = GetComponent<Collider2D>();
         cam = Camera.main;
-        maxFireballs = 2;
-        fireballCount = 0;
     }
 
     private void OnEnable()
@@ -62,7 +61,24 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        SideMovement();
+        if (!crouching)
+        {
+            SideMovement();
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                moveSpeed = 10f;
+
+                if (!throwing && Input.GetKeyDown(KeyCode.LeftShift) && GameManager.Instance.currentFireballs < GameManager.Instance.maxFireballs && GameManager.Instance.currentState == 2)
+                {
+                    StartCoroutine(ThrowFire());
+                }
+            }
+            else
+            {
+                moveSpeed = 8f;
+            }
+        }
+        
         isGrounded = rb.Raycast(Vector2.down);
         GameManager.Instance.playerFaceLeft = faceLeft;
 
@@ -86,24 +102,6 @@ public class PlayerController : MonoBehaviour
         AddGravity();
 
         jumping = !isGrounded;
-
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            moveSpeed = 10f;
-
-            if (Input.GetKeyDown(KeyCode.LeftShift) && fireballCount < maxFireballs && GameManager.Instance.currentState == 2)
-            {
-                StartCoroutine(ThrowFire());
-            }
-            else
-            {
-                throwing = false;
-            }
-        }
-        else
-        {
-            moveSpeed = 8f;
-        }
     }
 
     private void SideMovement()
@@ -188,10 +186,24 @@ public class PlayerController : MonoBehaviour
     public IEnumerator ThrowFire()
     {
         throwing = true;
-        fireballCount ++;
-        Instantiate(fireballPrefab, fireballSpawnPos.position, Quaternion.identity);
+        GameManager.Instance.currentFireballs ++;
+        GameObject instance;
         
-        yield return new WaitForSeconds(0.25f);
+        if (faceLeft)
+        {
+            instance = Instantiate(fireballPrefab, fireballSpawnPosL.position, Quaternion.identity);
+            instance.GetComponent<Fireball>().direction = Vector2.left;
+        }
+        else
+        {
+            instance = Instantiate(fireballPrefab, fireballSpawnPosR.position, Quaternion.identity);
+            instance.GetComponent<Fireball>().direction = Vector2.right;
+        }
+        
+        Debug.Log("Throw");
+        yield return new WaitForSeconds(0.2f);
+
+
         throwing = false;
         yield return null;
     }

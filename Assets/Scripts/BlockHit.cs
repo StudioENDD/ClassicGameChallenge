@@ -5,7 +5,6 @@ public class BlockHit : MonoBehaviour
 {
     public GameObject item;
     public Sprite emptyBlock;
-    public bool emptyBlockActive;
     public int maxHits = -1;
     private bool animating;
     public bool breakable = false;

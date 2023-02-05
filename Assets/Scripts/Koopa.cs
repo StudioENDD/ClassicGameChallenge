@@ -80,6 +80,11 @@ public class Koopa : MonoBehaviour
         {
             GameManager.Instance.AddScore(200);
             Hit();
+            if(other != null)
+            {
+                Fireball fireball = other.gameObject.GetComponent<Fireball>(); 
+                StartCoroutine(fireball.BlowUp());
+            }
         }
         else if (!shelled && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {

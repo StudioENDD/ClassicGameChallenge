@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     public float countDownRate;
     public int currentState;
     public bool playerFaceLeft;
+    public int maxFireballs;
+    public int currentFireballs;
+    
 
     private void Awake()
     {
@@ -27,6 +30,9 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
         }
         countDownRate = Time.deltaTime;
+        Instance.maxFireballs = 2;
+        Instance.currentFireballs = 0;
+        
     }
 
     private void OnDestroy()
@@ -59,6 +65,11 @@ public class GameManager : MonoBehaviour
             timeValue = 0;
         }
         timer = (int) (timeValue * 2.5);
+
+        if (currentFireballs < 0)
+        {
+            currentFireballs = 0;
+        }
       
     }
 

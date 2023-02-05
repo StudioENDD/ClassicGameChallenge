@@ -8,11 +8,13 @@ public class FireballAnimation : MonoBehaviour
     public float framerate = 1f/ 6f;
 
     private SpriteRenderer spriteRenderer;
+    private Fireball fireball;
     private int frame;
 
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        fireball = GetComponent<Fireball>();
     }
 
 
@@ -29,7 +31,7 @@ public class FireballAnimation : MonoBehaviour
     private void Animate()
     {
         frame ++;
-        if (GameManager.Instance.currentState > 0)
+        if (!fireball.hit)
         {
             if (frame >= fireballSprites.Length)
             {
@@ -41,7 +43,7 @@ public class FireballAnimation : MonoBehaviour
                 spriteRenderer.sprite = fireballSprites[frame];
             }
         }
-        else if (GameManager.Instance.currentState == 0)
+        else if (fireball.hit)
         {
             if (frame >= explosionSprites.Length)
             {

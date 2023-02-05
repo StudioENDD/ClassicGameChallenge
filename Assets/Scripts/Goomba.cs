@@ -43,6 +43,12 @@ public class Goomba : MonoBehaviour
         {
             GameManager.Instance.AddScore(100);
             Hit();
+            if(other != null)
+            {
+                Fireball fireball = other.gameObject.GetComponent<Fireball>(); 
+                StartCoroutine(fireball.BlowUp());
+            }
+            
         }
         else if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {

@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4324188914359343653}
   - component: {fileID: 6267838671507682035}
   - component: {fileID: -1231129715263702872}
-  - component: {fileID: -146318254307506308}
   - component: {fileID: -8130296223660731469}
+  - component: {fileID: 7280902487901637915}
   m_Layer: 7
   m_Name: Star
   m_TagString: Untagged
@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 2992af5f901466742bc5ee9afe0a1d34, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -118,7 +118,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4080096219345861969}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 2992af5f901466742bc5ee9afe0a1d34, type: 2}
   m_IsTrigger: 0
@@ -165,21 +165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd498718ebabbc46aaf969eb7004cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-146318254307506308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4080096219345861969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b08df6089e26174389b7f69d12f2523, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  direction: {x: 1, y: 0}
-  dontMove: 0
+  animating: 0
 --- !u!114 &-8130296223660731469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,3 +179,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 3
+--- !u!114 &7280902487901637915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4080096219345861969}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487be3eefdc94ad42860c5bd34ba6826, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 1, y: 0}
+  speed: 2
+  bounceHeight: 2
+  bounceTime: 1

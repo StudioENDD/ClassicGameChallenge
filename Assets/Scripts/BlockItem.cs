@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class BlockItem : MonoBehaviour
 {
-    void Start()
+
+    public bool animating;
+    void Awake()
     {
         StartCoroutine(Animate());
     }
 
     private IEnumerator Animate()
     {
+        animating = true;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         CircleCollider2D physicsCollider = GetComponent<CircleCollider2D>();
         BoxCollider2D triggerCollider = GetComponent<BoxCollider2D>();
@@ -44,5 +47,6 @@ public class BlockItem : MonoBehaviour
         rb.isKinematic = false;
         physicsCollider.enabled = true;
         triggerCollider.enabled = true;
+        animating = false;
     }
 }

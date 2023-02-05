@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 88187978811052940}
   - component: {fileID: 6482413818297227399}
-  - component: {fileID: 8444657874511981761}
   - component: {fileID: 8590218262830773308}
+  - component: {fileID: 4540221177353080154}
+  - component: {fileID: 2388484423169010677}
   - component: {fileID: 5193923527275916411}
   - component: {fileID: 4449268875447591177}
-  - component: {fileID: 2846122935069120802}
-  - component: {fileID: 8529086507698437191}
+  - component: {fileID: 7893585075892793999}
   m_Layer: 6
   m_Name: Fireball
   m_TagString: Untagged
@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6482413818297227399
 SpriteRenderer:
@@ -90,21 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8444657874511981761
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4681754495648543543}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80bdcf973145e114ea7859444927587a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grounded: 0
-  maxJumpHeight: 2
-  maxJumpTime: 0.5
 --- !u!114 &8590218262830773308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,6 +112,33 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 828906b4d7c6b3b4f94f328183b68258, type: 3}
   - {fileID: 21300000, guid: e03228bbd2434604f979fcba7facfb1b, type: 3}
   framerate: 0.16666667
+--- !u!114 &4540221177353080154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681754495648543543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4191011b8c1aeae4f92769527f2fde69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 1, y: 0}
+  speed: 7.5
+--- !u!114 &2388484423169010677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4681754495648543543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db225e7894226e43b077c77f3e8da0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hit: 0
 --- !u!58 &5193923527275916411
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -158,13 +170,13 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: 2992af5f901466742bc5ee9afe0a1d34, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!61 &2846122935069120802
+--- !u!61 &7893585075892793999
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -188,19 +200,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.4}
+  m_Size: {x: 0.375, y: 0.3}
   m_EdgeRadius: 0
---- !u!114 &8529086507698437191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4681754495648543543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234ded844d5b5cf4cb2db321a511601d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  direction: {x: -1, y: 0}
