@@ -4,7 +4,7 @@ using UnityEngine;
 public class BlockHit : MonoBehaviour
 {
     public GameObject item;
-    public Sprite emptyBlock;
+    public bool emptyBlock;
     public int maxHits = -1;
     private bool animating;
     public bool breakable = false;
@@ -12,6 +12,10 @@ public class BlockHit : MonoBehaviour
     private AnimatedSprite animatedSprite;
     private Player player;
 
+    private void Awake()
+    {
+        emptyBlock = false;
+    }
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (!animating && maxHits != 0 && col.gameObject.CompareTag("Player"))
@@ -37,8 +41,9 @@ public class BlockHit : MonoBehaviour
 
             if (maxHits == 0) 
             {
-                animatedSprite.enabled = false;
-                spriteRenderer.sprite = emptyBlock;
+                //animatedSprite.enabled = false;
+                //spriteRenderer.sprite = emptyBlock;
+                emptyBlock = true;
             }
 
             if (item != null)

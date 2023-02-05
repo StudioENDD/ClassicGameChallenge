@@ -14,8 +14,8 @@ public class KoopaAnimatedSprite : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        koopa = GetComponent<Koopa>();
+        spriteRenderer = GetComponentInParent<SpriteRenderer>();
+        koopa = GetComponentInParent<Koopa>();
     }
 
     private void OnEnable()

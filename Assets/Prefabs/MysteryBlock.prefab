@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9192638429543188044}
   - component: {fileID: 9192638429543188045}
   - component: {fileID: 9192638429543188046}
-  - component: {fileID: 2098285783}
+  - component: {fileID: 2098285784}
   m_Layer: 0
   m_Name: MysteryBlock
   m_TagString: Untagged
@@ -126,12 +126,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 6417435330361343932, guid: 3295f8a46b7ebc34b9cbf27984304ba9, type: 3}
-  fireFlower: {fileID: 0}
-  emptyBlock: {fileID: 21300000, guid: dcde8cbfd357fe64ea17875e88595b71, type: 3}
-  emptyBlockActive: 0
+  emptyBlock: 0
   maxHits: 1
   breakable: 0
---- !u!114 &2098285783
+--- !u!114 &2098285784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,7 +138,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 9192638429543188042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 473952a508c46e840a7290833a35e6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: c4c40667f8494af4382d9fcabb5ab978, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
@@ -148,4 +146,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1d3e8278b7a25524598cf214c5d30e38, type: 3}
   - {fileID: 21300000, guid: 2494dd79f2b3a854c883923adf4c5e0b, type: 3}
   - {fileID: 21300000, guid: f3a84541836c95745ae81701facab636, type: 3}
+  emptyBlockSprites:
+  - {fileID: 21300000, guid: 269b3112c0efa2d40a965b8f3a4dc450, type: 3}
+  - {fileID: 21300000, guid: c1d26140b7bd627419260a56d477271d, type: 3}
+  - {fileID: 21300000, guid: b5eadcb2e267647448daa74e9e072297, type: 3}
   framerate: 0.16666667

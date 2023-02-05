@@ -33,7 +33,7 @@ public class Star : MonoBehaviour
         velocity.y = Mathf.Max(velocity.y, gravity / 2f);
     }
 
-private void OnBecameVisible()
+    private void OnBecameVisible()
     {
         enabled = true;
     }

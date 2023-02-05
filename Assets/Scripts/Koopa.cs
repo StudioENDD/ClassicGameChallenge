@@ -8,11 +8,16 @@ public class Koopa : MonoBehaviour
     private bool pushed;
     public bool faceLeft;
     private EntityMovement movement;
+    private CircleCollider2D cirCol;
+    private BoxCollider2D boxCol;
 
     private void Awake()
     {
         movement = GetComponent<EntityMovement>();
+        cirCol = GetComponent<CircleCollider2D>();
+        boxCol = GetComponent<BoxCollider2D>();
     }
+
     private void Update()
     {
         if(movement.direction.x < 0)
@@ -23,7 +28,20 @@ public class Koopa : MonoBehaviour
         {
             faceLeft = false;
         }
+
+        if(faceLeft)
+        {
+            cirCol.offset = new Vector2(0.25f, -0.5f);
+            boxCol.offset = new Vector2(0.25f, -0.5f);
+        }
+        else
+        {
+            cirCol.offset = new Vector2(0f, -0.5f);
+            boxCol.offset = new Vector2(0f, -0.5f);
+        }
+
     }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         if (!shelled && col.gameObject.CompareTag("Player"))
@@ -37,6 +55,7 @@ public class Koopa : MonoBehaviour
             }
             else if (col.transform.DotTest(transform, Vector2.down))
             {
+                Debug.Log("Shell Koopa");
                 GameManager.Instance.AddScore(100);
                 EnterShell();
             }
@@ -95,7 +114,7 @@ public class Koopa : MonoBehaviour
     {
         shelled = true;
         GetComponent<EntityMovement>().enabled = false;
-        //GetComponent<KoopaAnimatedSprite>().enabled = false;
+        //GetComponentInChildren<KoopaAnimatedSprite>().enabled = false;
     }
 
     private void PushShell(Vector2 direction)
@@ -113,7 +132,7 @@ public class Koopa : MonoBehaviour
 
     private void Hit()
     {
-        GetComponent<KoopaAnimatedSprite>().enabled = false;
+        GetComponentInChildren<KoopaAnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);
     }

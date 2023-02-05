@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1738714410264870114}
   - component: {fileID: 8223840988238689027}
   - component: {fileID: 598911539719186584}
-  - component: {fileID: -5714609673127020522}
   - component: {fileID: -7590793303023899644}
+  - component: {fileID: 475966859}
   m_Layer: 7
   m_Name: Coin
   m_TagString: Untagged
@@ -29,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 3648110288617516767}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8223840988238689027
 SpriteRenderer:
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: ece53216f7afa7840923a830bd2c1d19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 272f6651c2aa80846a0009e66bf0d933, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,27 +104,15 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.8192, y: 0.8192}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.625, y: 0.625}
+  m_Size: {x: 0.7, y: 0.9}
   m_EdgeRadius: 0
---- !u!114 &-5714609673127020522
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3648110288617516767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd498718ebabbc46aaf969eb7004cd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-7590793303023899644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,3 +126,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+--- !u!114 &475966859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3648110288617516767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473952a508c46e840a7290833a35e6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 272f6651c2aa80846a0009e66bf0d933, type: 3}
+  - {fileID: 21300000, guid: 11ad1464cbb20194785e7ababa0a3f6e, type: 3}
+  - {fileID: 21300000, guid: b5d54f719bf392044abd5969d59e49c5, type: 3}
+  - {fileID: 21300000, guid: 7410c41f1b1c57744bcdfa46b4ae908a, type: 3}
+  framerate: 0.16666667

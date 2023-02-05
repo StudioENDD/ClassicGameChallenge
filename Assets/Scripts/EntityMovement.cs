@@ -12,7 +12,7 @@ public class EntityMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        enabled = false;
+        //enabled = true;
     }
 
     private void OnBecameVisible()
