@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9192638429543188046}
   - component: {fileID: 2098285784}
   m_Layer: 0
-  m_Name: MysteryBlock
+  m_Name: NormalMysteryBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

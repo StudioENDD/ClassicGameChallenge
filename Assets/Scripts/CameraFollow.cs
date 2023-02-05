@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     private Transform player;
-    public float height = 5f;
+    public float height = 7f;
     public float undergroundHeight = -15f;
     private void Awake()
     {
@@ -20,10 +20,12 @@ public class CameraFollow : MonoBehaviour
         }
     }
 
-    public void SetUnderGround (bool underground)
+    public void SetUnderGround (bool underground, Transform endPos)
     {
         Vector3 cameraPos = transform.position;
         cameraPos.y = underground ? undergroundHeight : height;
+        cameraPos.x = endPos.position.x + 14f;
         transform.position = cameraPos;
     }
+
 }

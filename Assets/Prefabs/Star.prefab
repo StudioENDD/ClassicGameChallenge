@@ -80,12 +80,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 0d361a6472000cb4e8429b0ccc0e148d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98263c0482c9bca4cb5fe2ec001ce211, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 8.4, y: 8.49}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -145,8 +145,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.2, y: 1.2128571}
-    newSize: {x: 2.56, y: 2.56}
+    oldSize: {x: 8.4, y: 8.49}
+    newSize: {x: 8.4, y: 8.49}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -209,18 +209,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprites:
-  - {fileID: 21300000, guid: 408ccc92187379d40ae545e85cf71593, type: 3}
-  - {fileID: 21300000, guid: 499dfd685de819a4c9dc16504d0bea30, type: 3}
-  - {fileID: 21300000, guid: 63ffb33ed99771d4e83753baa4e585cc, type: 3}
-  - {fileID: 21300000, guid: 85cbe488879eebb44b1283c8799d4c86, type: 3}
-  - {fileID: 21300000, guid: f94da287e0dd1234799216bc88a0983f, type: 3}
-  - {fileID: 21300000, guid: f2c9cb54f629ef541a40b7f9ff2f433f, type: 3}
-  - {fileID: 21300000, guid: df83b200e0ac57d4b82d9104ea002ff4, type: 3}
-  - {fileID: 21300000, guid: 677dc1cb370bfab4aaf03dca6eb18bd0, type: 3}
-  - {fileID: 21300000, guid: 46dca0ca78160434da6fd2ee278ffd35, type: 3}
-  - {fileID: 21300000, guid: 68ff93762d1bb994c947886509119390, type: 3}
-  - {fileID: 21300000, guid: 263ca9291ed55484995ec5767efb8ad9, type: 3}
-  - {fileID: 21300000, guid: 9d81f3aeba391764c8133487c4ad5b9c, type: 3}
-  - {fileID: 21300000, guid: b32568e26e6ec2541be5abd63866f529, type: 3}
-  - {fileID: 21300000, guid: eada1a38d1a31274abd77b93896d42fc, type: 3}
+  - {fileID: 21300000, guid: 98263c0482c9bca4cb5fe2ec001ce211, type: 3}
+  - {fileID: 21300000, guid: 515cf147d793e264aab7810adb3ccfa1, type: 3}
+  - {fileID: 21300000, guid: 75283646f0805a34b893a1a67656465f, type: 3}
+  - {fileID: 21300000, guid: e23d6e51e65722746a53097aa5a1b1ab, type: 3}
+  - {fileID: 21300000, guid: 92002c969fd5cf74aa0b0a3c9d6a8e1a, type: 3}
+  - {fileID: 21300000, guid: 5edfdc2522ffd494fa91599aee54cc59, type: 3}
+  - {fileID: 21300000, guid: dc3fd5944c7d94e42bbf62e39e76457a, type: 3}
+  - {fileID: 21300000, guid: 6d0ac5af44e963849bc35d8e46c63488, type: 3}
   framerate: 0.16666667

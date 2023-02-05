@@ -7,6 +7,7 @@ public class Pipe : MonoBehaviour
     public KeyCode enterKeyCode = KeyCode.S;
     public Vector3 enterDirection = Vector3.down;
     public Vector3 exitDirection = Vector3.zero;
+    public bool exit;
 
     private void OnTriggerStay2D(Collider2D other)
     {
@@ -30,7 +31,7 @@ public class Pipe : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
         bool underground = connection.position.y < 0f;
-        Camera.main.GetComponent<CameraFollow>().SetUnderGround(underground);
+        Camera.main.GetComponent<CameraFollow>().SetUnderGround(underground, connection);
 
         if (exitDirection != Vector3.zero)
         {
@@ -59,13 +60,42 @@ public class Pipe : MonoBehaviour
             float t = elapsed / duration;
 
             player.position = Vector3.Lerp(startPos, endPos, t);
-            player.localScale = Vector3. Lerp(startScale, endScale, t);
+            if(exit)
+            {
+                player.localScale = Vector3. Lerp(startScale, endScale, t);
+
+            }
+            //            
             elapsed += Time.deltaTime;
 
             yield return null;
         }
 
-        player.position = endPos;
-        player.localScale = endScale;
+        if(!exit)
+        {
+            //Camera.main.GetComponent<CameraFollow>().Transform.position.x = endPos.x + 15.5f;
+            player.position = endPos;
+            player.localScale = endScale;
+        }
+        else
+        {
+            //Camera.main.GetComponent<CameraFollow>().Transform.position.x = endPos.x + 15.5f;
+            player.position = endPos;
+            endPos = player.position;
+            startPos = player.position;
+            endPos.x += 2;
+            while (elapsed < duration)
+            {
+                float t = elapsed / duration;
+
+                player.position = Vector3.Lerp(startPos, endPos, t);
+                //player.localScale = Vector3. Lerp(startScale, endScale, t);
+                elapsed += Time.deltaTime;
+
+                yield return null;
+            }
+        }
+
+        
     }
 }

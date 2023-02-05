@@ -107,8 +107,15 @@ public class PlayerController : MonoBehaviour
     private void SideMovement()
     {
         inputAxis = Input.GetAxis("Horizontal");
-        velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
-
+        if(Input.GetKey(KeyCode.LeftShift))
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, 2 * moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, inputAxis * moveSpeed, moveSpeed * Time.deltaTime);
+            }
+        
         if (rb.Raycast(Vector2.right * velocity.x)) 
         {
             velocity.x = 0f;
