@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
 
     private void Death()
     {
+        GameManager.Instance.StopSound($"Stage" + GameManager.Instance.stage + "Theme");
+        GameManager.Instance.PlaySound("DeathSound");
         smallRenderer.enabled = true;
         bigRenderer.enabled = false;
         fireRenderer.enabled = false;
@@ -76,6 +78,7 @@ public class Player : MonoBehaviour
 
     public void Grow()
     {
+        GameManager.Instance.PlaySound("GoBigger");
         if(state == 0)
         {
             smallRenderer.enabled = false;
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
 
     private void Shrink()
     {
+        GameManager.Instance.PlaySound("Shrink");
         smallRenderer.enabled = true;
         bigRenderer.enabled = false;
         fireRenderer.enabled = false;
@@ -147,6 +151,8 @@ public class Player : MonoBehaviour
     {
         starPower = true;
         float elapsed = 0f;
+        GameManager.Instance.PauseSound($"Stage" + GameManager.Instance.stage + "Theme", true);
+        GameManager.Instance.PlaySound("StarMode");
 
         while (elapsed < duration)
         {
@@ -159,5 +165,7 @@ public class Player : MonoBehaviour
         }
         activeRenderer.spriteRenderer.color = Color.white;
         starPower = false;
+        GameManager.Instance.StopSound("StarMode");
+        GameManager.Instance.PauseSound($"Stage" + GameManager.Instance.stage + "Theme", false);
     }
 }

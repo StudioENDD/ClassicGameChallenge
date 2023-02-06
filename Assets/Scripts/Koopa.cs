@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Koopa : MonoBehaviour
 {
-    public float shellSpeed = 12;
+    public float shellSpeed = 10;
 
     public bool shelled;
     private bool pushed;
@@ -29,16 +29,7 @@ public class Koopa : MonoBehaviour
             faceLeft = false;
         }
 
-        if(faceLeft)
-        {
-            cirCol.offset = new Vector2(0.25f, -0.5f);
-            boxCol.offset = new Vector2(0.25f, -0.5f);
-        }
-        else
-        {
-            cirCol.offset = new Vector2(0f, -0.5f);
-            boxCol.offset = new Vector2(0f, -0.5f);
-        }
+        
 
     }
 
@@ -132,6 +123,7 @@ public class Koopa : MonoBehaviour
 
     private void Hit()
     {
+        GameManager.Instance.PlaySound("StompSound");
         GetComponentInChildren<KoopaAnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);

@@ -38,11 +38,10 @@ public class BlockHit : MonoBehaviour
         if (!breakable)
         {
             maxHits --;
+            GameManager.Instance.PlaySound("BlockHit");
 
             if (maxHits == 0) 
             {
-                //animatedSprite.enabled = false;
-                //spriteRenderer.sprite = emptyBlock;
                 emptyBlock = true;
             }
 
@@ -55,12 +54,14 @@ public class BlockHit : MonoBehaviour
         }
         else if (breakable && !player.small)
         {
-            //StartCoroutine(BreakAnimate());
+            GameManager.Instance.PlaySound("BlockBreak");
             GameManager.Instance.AddScore(50);
             Destroy(gameObject);
         }
         else if (breakable && player.small)
         {
+            
+            GameManager.Instance.PlaySound("BlockHit");
             StartCoroutine(Animate());
         }
     }

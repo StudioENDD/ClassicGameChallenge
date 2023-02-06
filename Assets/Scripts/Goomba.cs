@@ -66,6 +66,7 @@ public class Goomba : MonoBehaviour
 
     private void Hit()
     {
+        GameManager.Instance.PlaySound("StompSound");
         GetComponent<AnimatedSprite>().enabled = false;
         GetComponent<DeathAnimation>().enabled = true;
         Destroy(gameObject, 3f);

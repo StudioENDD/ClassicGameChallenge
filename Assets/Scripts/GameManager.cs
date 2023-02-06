@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public int currentFireballs;
     public bool playerClimb;
     private int persScore;
+    private AudioManager audioManager;
+    public GameObject audio;
     
 
     private void Awake()
@@ -30,17 +32,22 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            
         }
+        
+
         countDownRate = Time.deltaTime;
         Instance.maxFireballs = 2;
         Instance.currentFireballs = 0;
         playerClimb = false;
-        stage = 1;
+
+        stage = 2;
         world = 1;
     }
 
     private void OnDestroy()
     {
+        
         if (Instance == this) 
         {
             Instance = null;
@@ -49,8 +56,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        
         Application.targetFrameRate = 60;
         NewGame();
+        
     }
 
     private void Update()
@@ -107,6 +116,10 @@ public class GameManager : MonoBehaviour
 
 
         SceneManager.LoadScene($"Stage " + stage);
+        audio = GameObject.Find("Audio Manager");
+        audioManager = audio.GetComponent<AudioManager>();
+        
+        PlaySound($"Stage" + stage + "Theme");
     }
 
     public void NextLevel()
@@ -142,6 +155,7 @@ public class GameManager : MonoBehaviour
     public void AddCoin()
     {
         coins ++;
+        PlaySound("CoinPickup");
 
         if (coins == 100)
         {
@@ -153,10 +167,34 @@ public class GameManager : MonoBehaviour
     public void AddLife()
     {
         lives++;
+        PlaySound("1Up");
     }
 
     public void AddScore(int Score)
     {
         score += Score;
+    }
+
+    public void PlaySound(string name)
+    {
+        audioManager.Play(name);
+    }
+
+    public void StopSound(string name)
+    {
+        audioManager.Stop(name);
+    }
+
+    public void PauseSound(string name, bool on)
+    {
+        if(on)
+        {
+            audioManager.Pause(name);
+        }
+        else if (!on)
+        {
+            audioManager.UnPause(name);
+        }
+        return;
     }
 }

@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7266200505048002944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7266200505048002946}
+  - component: {fileID: 7266200505048002945}
+  m_Layer: 0
+  m_Name: Audio Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7266200505048002946
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7266200505048002944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.3782674, y: 0.0084423795, z: 0.92676705}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7266200505048002945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7266200505048002944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 850f38dfca2020f4e88c2d9b258381ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: DeathSound
+    clip: {fileID: 8300000, guid: bf4353676bbfa5245a573b72ea02b953, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: StompSound
+    clip: {fileID: 8300000, guid: 308ed88cbf2483143b50f2ed49250a3d, type: 3}
+    volume: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: JumpSound
+    clip: {fileID: 8300000, guid: 8ad3ca91bc87ad34c925d5f0256c9b91, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: ShootSound
+    clip: {fileID: 8300000, guid: 9a0c1976d4f5e74409c672f3532d4d71, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: EnemyDeathSound
+    clip: {fileID: 8300000, guid: 308ed88cbf2483143b50f2ed49250a3d, type: 3}
+    volume: 0.5
+    loop: 0
+    source: {fileID: 0}
+  - name: WinSound
+    clip: {fileID: 8300000, guid: 61309c9a1a3741844a259ccb888874f6, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Stage1Theme
+    clip: {fileID: 8300000, guid: 99018241b3645a84ea3af8365509b0e2, type: 3}
+    volume: 0.75
+    loop: 1
+    source: {fileID: 0}
+  - name: BlockHit
+    clip: {fileID: 8300000, guid: 3952066102f6b0d48b3cd4426ce99d39, type: 3}
+    volume: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: BlockBreak
+    clip: {fileID: 8300000, guid: 32f59e9cdf846fb429aacbed8c48b4cf, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: ScoreCount
+    clip: {fileID: 8300000, guid: c6ed35919c5bf074e9bebb02e0eb2a6b, type: 3}
+    volume: 0.75
+    loop: 1
+    source: {fileID: 0}
+  - name: CoinPickup
+    clip: {fileID: 8300000, guid: 4490f1010673d02468e3ffd50ba4a525, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: StarMode
+    clip: {fileID: 8300000, guid: be5941eefbe68f6448a581846a88e1d8, type: 3}
+    volume: 0.75
+    loop: 1
+    source: {fileID: 0}
+  - name: ClickSound
+    clip: {fileID: 8300000, guid: 77a269246cd6d7d44af8a2de9db39706, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: 1Up
+    clip: {fileID: 8300000, guid: b1341ad8205c09b469432d59b272821b, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: MainTheme
+    clip: {fileID: 8300000, guid: 99018241b3645a84ea3af8365509b0e2, type: 3}
+    volume: 0.75
+    loop: 1
+    source: {fileID: 0}
+  - name: GoBigger
+    clip: {fileID: 8300000, guid: d1a5e6c6ceec8cb44b7f05c2db2357a2, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Shrink
+    clip: {fileID: 8300000, guid: f712861eb66bdcb458bc93aa06848563, type: 3}
+    volume: 0.75
+    loop: 0
+    source: {fileID: 0}
+  - name: Stage2Theme
+    clip: {fileID: 8300000, guid: 2aa2a5bd1caa62c419ef58ddca109315, type: 3}
+    volume: 0.75
+    loop: 1
+    source: {fileID: 0}

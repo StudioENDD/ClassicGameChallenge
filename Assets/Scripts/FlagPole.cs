@@ -26,6 +26,9 @@ public class FlagPole : MonoBehaviour
     private IEnumerator LevelCompleteSequence(Transform player)
     {
         GameManager.Instance.countDownRate = 0f;
+        GameManager.Instance.StopSound("StarMode");
+        GameManager.Instance.StopSound("Stage1Theme");
+        GameManager.Instance.PlaySound("WinSound");
         player.GetComponent<PlayerController>().enabled = false;
         Scoring();
         
@@ -37,14 +40,14 @@ public class FlagPole : MonoBehaviour
         yield return MoveTo(player, castle.position);
 
         player.gameObject.SetActive(false);
-
+        GameManager.Instance.PlaySound("ScoreCount");
         while (GameManager.Instance.timer > 0)
         {
             GameManager.Instance.timeValue -= 0.4f;
             GameManager.Instance.AddScore(50);
             yield return new WaitForSeconds(0.01f);
         }
-
+        GameManager.Instance.StopSound("ScoreCount");
         yield return new WaitForSeconds(2f);
 
         GameManager.Instance.LoadLevel(nextWorld, nextStage);

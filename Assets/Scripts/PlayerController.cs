@@ -139,6 +139,7 @@ public class PlayerController : MonoBehaviour
         jumping = velocity.y > 0f;
         if (Input.GetButtonDown("Jump"))
         {
+            GameManager.Instance.PlaySound("JumpSound");
             velocity.y = jumpPower;
             jumping = true;
         }
@@ -208,6 +209,7 @@ public class PlayerController : MonoBehaviour
         }
         
         Debug.Log("Throw");
+        GameManager.Instance.PlaySound("ShootSound");
         yield return new WaitForSeconds(0.2f);
 
 
