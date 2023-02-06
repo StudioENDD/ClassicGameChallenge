@@ -129,7 +129,8 @@ public class GameManager : MonoBehaviour
         } 
         else
         {
-            LoseGame();
+            SceneManager.LoadScene("Game Over"); 
+            lives = 3;
         }
     }
 
