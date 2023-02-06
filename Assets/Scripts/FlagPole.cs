@@ -11,11 +11,13 @@ public class FlagPole : MonoBehaviour
     public int nextWorld = 1;
     public int nextStage = 1;
     public int remainingTime;
+    private Transform playerY;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
+            playerY = other.gameObject.transform;
             StartCoroutine(MoveTo(flag, poleBottom.position));
             StartCoroutine(LevelCompleteSequence(other.transform));
         }   
@@ -25,8 +27,11 @@ public class FlagPole : MonoBehaviour
     {
         GameManager.Instance.countDownRate = 0f;
         player.GetComponent<PlayerController>().enabled = false;
-
+        Scoring();
+        
+        GameManager.Instance.playerClimb = true;
         yield return MoveTo(player, poleBottom.position);
+        GameManager.Instance.playerClimb = false;
         yield return MoveTo(player, player.position + Vector3.right);
         yield return MoveTo(player, player.position + Vector3.right + Vector3.down);
         yield return MoveTo(player, castle.position);
@@ -54,5 +59,28 @@ public class FlagPole : MonoBehaviour
         }
 
         subject.position = destination;
+    }
+    private void Scoring()
+    {
+        if (playerY.position.y >= 11)
+        {
+            GameManager.Instance.AddScore(5000);
+        }
+        else if (playerY.position.y >= 8.5)
+        {
+            GameManager.Instance.AddScore(2000);
+        }
+        else if (playerY.position.y >= 6.5)
+        {
+            GameManager.Instance.AddScore(800);
+        }
+        else if (playerY.position.y >= 4)
+        {
+            GameManager.Instance.AddScore(400);
+        }
+        else
+        {
+            GameManager.Instance.AddScore(100);
+        }
     }
 }

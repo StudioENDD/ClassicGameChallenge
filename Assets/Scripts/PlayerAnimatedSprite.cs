@@ -14,6 +14,7 @@ public class PlayerAnimatedSprite : MonoBehaviour
     public Sprite[] runSpritesR;
     public Sprite[] throwSpritesL;
     public Sprite[] throwSpritesR;
+    public Sprite[] poleSprite;
     public Sprite[] deathSprite;
     public float framerate = 1f/ 6f;
 
@@ -44,14 +45,26 @@ public class PlayerAnimatedSprite : MonoBehaviour
         if (deathAnimation.dead)
         {
             if (frame >= deathSprite.Length)
-                {
-                    frame = 0;
-                }
+            {
+                frame = 0;
+            }
 
-                if (frame >= 0 && frame < deathSprite.Length)
-                {
-                    spriteRenderer.sprite = deathSprite[frame];
-                }
+            if (frame >= 0 && frame < deathSprite.Length)
+            {
+                spriteRenderer.sprite = deathSprite[frame];
+            }
+        }
+        else if (GameManager.Instance.playerClimb)
+        {
+            if (frame >= poleSprite.Length)
+            {
+                frame = 0;
+            }
+
+            if (frame >= 0 && frame < poleSprite.Length)
+            {
+                spriteRenderer.sprite = poleSprite[frame];
+            }
         }
         else if (!movement.faceLeft)
         {

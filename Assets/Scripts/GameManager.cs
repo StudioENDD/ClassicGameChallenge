@@ -16,6 +16,8 @@ public class GameManager : MonoBehaviour
     public bool playerFaceLeft;
     public int maxFireballs;
     public int currentFireballs;
+    public bool playerClimb;
+    private int persScore;
     
 
     private void Awake()
@@ -32,7 +34,9 @@ public class GameManager : MonoBehaviour
         countDownRate = Time.deltaTime;
         Instance.maxFireballs = 2;
         Instance.currentFireballs = 0;
-        
+        playerClimb = false;
+        stage = 1;
+        world = 1;
     }
 
     private void OnDestroy()
@@ -86,6 +90,20 @@ public class GameManager : MonoBehaviour
     {
         this.world = world;
         this.stage = stage;
+
+        if (stage == this.stage)
+        {
+            score = 0;
+            timer = 400;
+            timeValue = 160;
+        }
+        else
+        {
+            persScore = 0;
+            timer = 400;
+            timeValue = 160;
+        }
+
 
         SceneManager.LoadScene($"Stage " + stage);
     }
