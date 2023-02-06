@@ -84,6 +84,7 @@ public class GameManager : MonoBehaviour
         score = 0;
         timer = 400;
         timeValue = 160;
+        LoadLevel(1, 1);
     }
 
     public void LoadLevel(int world, int stage)

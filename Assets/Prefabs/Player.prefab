@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6697244754943894043}
   - component: {fileID: 2341883677807438944}
   - component: {fileID: 4405384181480431906}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 577c2e6a42734b84da3fca4018b0ae70, type: 3}
   throwSpritesR:
   - {fileID: 21300000, guid: 7e25f1d76c72dbc4b97733ca8023e8c8, type: 3}
+  poleSprite:
+  - {fileID: 21300000, guid: 64a40b6691e3cfa468d73be13dde8154, type: 3}
+  - {fileID: 21300000, guid: c2783aeadf12ad24fa064c2cf2a89d28, type: 3}
   deathSprite:
   - {fileID: 21300000, guid: c0c0f5d8e88585c41be4d7975ab82681, type: 3}
   - {fileID: 21300000, guid: 10b0421b44488b041a62021e818fbac5, type: 3}
@@ -193,7 +196,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4022294217375335566}
   - {fileID: 6122732367515578067}
@@ -201,7 +204,7 @@ Transform:
   - {fileID: 5283676082007657491}
   - {fileID: 3187746184314851938}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3996292687077851612
 MonoBehaviour:
@@ -216,11 +219,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireballPrefab: {fileID: 4681754495648543543, guid: a1632b7b667a33449a3e2320d84836e6, type: 3}
-  fireballSpawnPos: {fileID: 5283676082007657491}
+  fireballSpawnPosR: {fileID: 5283676082007657491}
+  fireballSpawnPosL: {fileID: 3187746184314851938}
   maxFireballs: 2
-  fireballCount: 0
+  currentFireballs: 0
   moveSpeed: 8
-  maxJumpHeight: 5
+  maxJumpHeight: 4
   maxJumpTime: 1
 --- !u!114 &4047021727849886383
 MonoBehaviour:
@@ -299,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3187746184314851938}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: LeftFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +336,7 @@ GameObject:
   - component: {fileID: 2468951016396194291}
   - component: {fileID: 1427010592}
   - component: {fileID: 1017967112416261000}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Small
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +398,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: cde6c905808bba441860da9e9afe80d6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -469,6 +473,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 559e5aa6772c11148b18b45844148d0c, type: 3}
   throwSpritesL: []
   throwSpritesR: []
+  poleSprite:
+  - {fileID: 21300000, guid: 925ab144e8f8bf44a8105a22f45a4e92, type: 3}
+  - {fileID: 21300000, guid: 94eba11c6e0598b4e973f12de35d1416, type: 3}
   deathSprite:
   - {fileID: 21300000, guid: c0c0f5d8e88585c41be4d7975ab82681, type: 3}
   - {fileID: 21300000, guid: 10b0421b44488b041a62021e818fbac5, type: 3}
@@ -486,7 +493,7 @@ GameObject:
   - component: {fileID: 1124727185351039832}
   - component: {fileID: 2869623632030193488}
   - component: {fileID: 6461883071253567634}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -503,7 +510,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 5280360792748233329}
   m_RootOrder: 1
@@ -629,6 +636,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f33c2f478f0ec3145869e1d5f2bc3a54, type: 3}
   throwSpritesL: []
   throwSpritesR: []
+  poleSprite:
+  - {fileID: 21300000, guid: 3aec608dc06f1d14ea0f6ac882cf1c5f, type: 3}
+  - {fileID: 21300000, guid: 593af57de48f7594e9d891568413ccaa, type: 3}
   deathSprite:
   - {fileID: 21300000, guid: c0c0f5d8e88585c41be4d7975ab82681, type: 3}
   - {fileID: 21300000, guid: 10b0421b44488b041a62021e818fbac5, type: 3}
@@ -644,7 +654,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5283676082007657491}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: RightFireball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -658,7 +668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8301127169143547771}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
